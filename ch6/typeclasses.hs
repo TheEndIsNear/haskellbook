@@ -14,7 +14,7 @@ data DayOfWeek
   | Fri
   | Sat
   | Sun
-  deriving Show
+  deriving (Show)
 
 data Date =
   Date DayOfWeek Int
@@ -32,9 +32,9 @@ instance Eq DayOfWeek where
 
 instance Ord DayOfWeek where
   compare Fri Fri = EQ
-  compare Fri _   = GT
-  compare _ Fri   = LT
-  compare _ _     = EQ
+  compare Fri _ = GT
+  compare _ Fri = LT
+  compare _ _ = EQ
 
 instance Eq Date where
   (==) (Date weekday dayOfMonth) (Date weekday' dayOfMonth') =
@@ -46,7 +46,18 @@ data Identity a =
 instance Eq a => Eq (Identity a) where
   (==) (Identity v) (Identity v') = v == v'
 
-data NoEq = NoEqInst deriving Show
+data NoEq =
+  NoEqInst
+  deriving (Show)
 
 check' :: Ord a => a -> a -> Bool
 check' a a' = a == a'
+
+add :: Num a => a -> a -> a
+add x y = x + y
+
+addWeird :: (Ord a, Num a) => a -> a -> a
+addWeird x y =
+  if x > 1
+    then x + y
+    else x
