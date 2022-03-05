@@ -32,3 +32,14 @@ oneIsOne = dodgy 1
 
 oneIsTwo :: Num a => a -> a
 oneIsTwo = (flip dodgy) 2
+
+pal :: Eq a => [a] -> Bool
+pal xs
+  | xs == reverse xs = True
+  | otherwise = False
+
+numbers :: (Num a, Eq a, Ord a) => a -> Integer
+numbers x
+  | x < 0  = -1
+  | x == 0 = 0
+  | x >= 0 = 1
