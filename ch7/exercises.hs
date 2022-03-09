@@ -40,6 +40,30 @@ pal xs
 
 numbers :: (Num a, Eq a, Ord a) => a -> Integer
 numbers x
-  | x < 0  = -1
+  | x < 0 = -1
   | x == 0 = 0
   | x >= 0 = 1
+
+tensDigit :: Integral a => a -> a
+tensDigit x = d
+  where
+    (xLast, _) = x `divMod` 10
+    d = xLast `mod` 10
+
+foldBool :: a -> a -> Bool -> a
+foldBool x y bool =
+  case bool of
+    True -> y
+    False -> x
+
+foldBool2 :: a -> a -> Bool -> a
+foldBool2 x y bool
+  | bool == False = x
+  | otherwise = y
+
+foldBool3 :: a -> a -> Bool -> a
+foldBool3 x _ False = x
+foldBool3 _ y True = y
+
+g :: (a -> b) -> (a, c) -> (b, c)
+g aToB (x, y) = (aToB x, y)
