@@ -4,7 +4,7 @@ addEmUp2 :: Num a => (a, a) -> a
 addEmUp2 (x, y) = x + y
 
 addEmUp2Alt :: Num a => (a, a) -> a
-addEmUp2Alt tup = (fst tup) + (snd tup)
+addEmUp2Alt = uncurry (+)
 
 fst3 :: (a, b, c) -> a
 fst3 (x, _, _) = x
