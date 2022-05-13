@@ -11,3 +11,6 @@ myWords xs =
           then []
           else tail rest
    in word : myWords next
+
+myFilter :: String -> [String]
+myFilter xs = filter (\x -> x `notElem` ["the", "a", "an"]) $ words xs
