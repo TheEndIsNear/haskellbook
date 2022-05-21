@@ -91,16 +91,30 @@ squishMap _ [] = []
 squishMap f xs = squish $ myMap f xs
 
 squishAgain :: [[a]] -> [a]
-squishAgain = undefined
+squishAgain = squishMap id
 
 myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
-myMaximumBy = undefined
+myMaximumBy _ [] = undefined
+myMaximumBy f (x:xs) =
+  case f x max of
+    LT -> max
+    EQ -> x
+    GT -> x
+  where
+    max = myMaximumBy f xs
 
 myMinimumBy :: (a -> a -> Ordering) -> [a] -> a
-myMinimumBy = undefined
+myMinimumBy _ [] = undefined
+myMinimumBy f (x:xs) =
+  case f x min of
+    LT -> x
+    EQ -> x
+    GT -> min
+  where
+    min = myMinimumBy f xs
 
 myMaximum :: (Ord a) => [a] -> a
-myMaximum = undefined
+myMaximum = myMaximumBy compare
 
 myMinimum :: (Ord a) => [a] -> a
-myMinimum = undefined
+myMinimum = myMinimumBy compare
