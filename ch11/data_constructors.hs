@@ -33,7 +33,9 @@ data Price =
   Price Integer
   deriving (Eq, Show)
 
-data Size = Size Integer deriving (Eq, Show)
+data Size =
+  Size Integer
+  deriving (Eq, Show)
 
 data Manufacturer
   = Mini
@@ -53,8 +55,11 @@ data Vehicle
   deriving (Eq, Show)
 
 myCar = Car Mini (Price 14000)
+
 urCar = Car Mazda (Price 20000)
+
 clownCar = Car Tata (Price 7000)
+
 doge = Plane PapuAir (Size 150)
 
 isCar :: Vehicle -> Bool
@@ -73,3 +78,26 @@ arePlanes = map isPlane
 
 getManu :: Vehicle -> Manufacturer
 getManu (Car manufacturer _) = manufacturer
+
+-- nullary
+data Example0 =
+  Example0
+  deriving (Eq, Show)
+
+-- unary
+data Example1 =
+  Example1 Int
+  deriving (Eq, Show)
+
+-- product of Int and String
+data Example2 =
+  Example2 Int String
+  deriving (Eq, Show)
+
+data MyType =
+  MyVal Int
+  deriving (Eq, Show)
+
+data Example =
+  MakeExample
+  deriving (Show)
