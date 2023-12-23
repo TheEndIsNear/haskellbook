@@ -1,4 +1,4 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving, FlexibleInstances  #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, FlexibleInstances #-}
 
 data PugType =
   PugData
@@ -102,17 +102,19 @@ data MyType =
 
 data Example =
   MakeExample
-  deriving Show
+  deriving (Show)
 
 data Example' =
   MakeExample' Int
-  deriving Show
+  deriving (Show)
 
 newtype Goats =
-  Goats Int deriving (Eq, Show, TooMany)
+  Goats Int
+  deriving (Eq, Show, TooMany)
 
 newtype Cows =
-  Cows Int deriving (Eq, Show)
+  Cows Int
+  deriving (Eq, Show)
 
 tooManyGoats :: Goats -> Bool
 tooManyGoats (Goats n) = n > 42
@@ -126,7 +128,7 @@ instance TooMany Int where
 instance TooMany (Int, Int) where
   tooMany (x, y) = tooMany $ (+) x y
 
-instance TooMany (Int, String) where 
+instance TooMany (Int, String) where
   tooMany (n, _) = tooMany n
 
 instance (Num a, TooMany a) => TooMany (a, a) where
@@ -134,3 +136,6 @@ instance (Num a, TooMany a) => TooMany (a, a) where
 
 --instance TooMany Goats where
 --  tooMany (Goats n) = tooMany n
+data BigSmall
+  = Big Bool
+  | Small Bool
