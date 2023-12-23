@@ -1,3 +1,4 @@
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 data PugType =
   PugData
 
@@ -100,4 +101,26 @@ data MyType =
 
 data Example =
   MakeExample
-  deriving (Show)
+  deriving Show
+
+data Example' =
+  MakeExample' Int
+  deriving Show
+
+newtype Goats =
+  Goats Int deriving (Eq, Show, TooMany)
+
+newtype Cows =
+  Cows Int deriving (Eq, Show)
+
+tooManyGoats :: Goats -> Bool
+tooManyGoats (Goats n) = n > 42
+
+class TooMany a where
+  tooMany :: a -> Bool
+
+instance TooMany Int where
+  tooMany n = n > 42
+
+--instance TooMany Goats where
+--  tooMany (Goats n) = tooMany n
