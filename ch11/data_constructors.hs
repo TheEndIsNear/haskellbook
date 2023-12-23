@@ -1,4 +1,5 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, FlexibleInstances  #-}
+
 data PugType =
   PugData
 
@@ -121,6 +122,15 @@ class TooMany a where
 
 instance TooMany Int where
   tooMany n = n > 42
+
+instance TooMany (Int, Int) where
+  tooMany (x, y) = tooMany $ (+) x y
+
+instance TooMany (Int, String) where 
+  tooMany (n, _) = tooMany n
+
+instance (Num a, TooMany a) => TooMany (a, a) where
+  tooMany (x, y) = tooMany (x + y)
 
 --instance TooMany Goats where
 --  tooMany (Goats n) = tooMany n
