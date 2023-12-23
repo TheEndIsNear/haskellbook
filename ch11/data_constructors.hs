@@ -1,5 +1,7 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving, FlexibleInstances #-}
 
+import Data.Int
+
 data PugType =
   PugData
 
@@ -139,3 +141,24 @@ instance (Num a, TooMany a) => TooMany (a, a) where
 data BigSmall
   = Big Bool
   | Small Bool
+  deriving (Eq, Show)
+
+data NumberOrBool
+  = Numba Int8
+  | BoolyBool Bool
+  deriving (Eq, Show)
+
+data QuantumBool
+  = QuantumTrue
+  | QuantumFalse
+  | QuantumBoth
+  deriving (Eq, Show)
+
+data TwoQs =
+  MkTwoQs QuantumBool QuantumBool
+  deriving (Eq, Show)
+
+data Person = Person
+  { name :: String
+  , age :: Int
+  } deriving (Eq, Show)
