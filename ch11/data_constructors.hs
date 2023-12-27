@@ -325,3 +325,19 @@ nineToFive = Programmer {os = Mac, lang = Haskell}
 
 feelingWizardly :: Programmer
 feelingWizardly = Programmer {lang = Agda, os = GnuPlusLinux}
+
+data ThereYet =
+  There Float Int Bool
+  deriving (Eq, Show)
+
+nope = There
+
+notYet :: Int -> Bool -> ThereYet
+notYet = nope 2.5
+
+notQuite :: Bool -> ThereYet
+notQuite = notYet 10
+
+yussssss :: ThereYet
+yussssss = notQuite False
+
